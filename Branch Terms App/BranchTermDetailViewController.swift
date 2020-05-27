@@ -19,6 +19,7 @@ class BranchTermDetailViewController: UIViewController {
     @IBOutlet weak var branchTermNameLabel: UILabel!
     @IBOutlet weak var branchDefinitionLabel: UILabel!
     
+    // load up your UILabels with data set from either your TableViewController or the Branch link data returned from initSession in AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         branchTermNameLabel.text = branchTermName
@@ -26,6 +27,7 @@ class BranchTermDetailViewController: UIViewController {
         createContentReference(name: branchTermName, def: branchDefinition)
     }
     
+    // function call to generate your buo with the data to get it ready for sharing
     func createContentReference(name: String, def: String) {
         buo = BranchUniversalObject.init(canonicalIdentifier: "branchterm/12345")
         buo.title = name
@@ -42,6 +44,7 @@ class BranchTermDetailViewController: UIViewController {
         lp.addControlParam("$desktop_url", withValue: "https://branch.io/glossary/")
     }
     
+    // tie an action to your button and show share sheet to generate a Branch link for sharing
     @IBAction func shareBranchTerm(sender: UIButton) {
         let message = "Learn about \(branchTermName)!"
         print(buo.contentMetadata)
